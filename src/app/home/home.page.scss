@@ -1,27 +1,30 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.titulo{
+  font-family: 'Trebuchet MS';
+  font-size: xx-large;
+  font-weight: bold;
+  text-align:center;
+  color: rgb(1,99,170);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.subtitulo{
+  font-family: 'Trebuchet MS';
+  font-size: medium;
+  font-weight: bold;
+  text-align:center;
+  color: rgb(1,99,170);
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.opciones{
+  font-family: 'Trebuchet MS';
+  font-size: large;
+  text-align:center;
+  color: rgb(245,89,22);
 }
 
-#container a {
-  text-decoration: none;
+.etiquetas{
+  font-family: 'Trebuchet MS';
+  font-size: medium;
+  font-weight: bold;
+  text-align:left;
+  color: rgb(1,99,170);
 }
