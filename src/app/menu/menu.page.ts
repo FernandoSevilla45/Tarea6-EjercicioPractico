@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Acceso } from '../servicio/acceso';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -12,10 +13,13 @@ export class MenuPage implements OnInit {
   datospersona:any=[]
   nombre:string=""
   contactos:any=[]
-  constructor(public servicio: Acceso) { 
+
+
+constructor(public servicio: Acceso, public nvCtrl:NavController) { 
     this.servicio.obtenerSesion('idpersona').then((res:any)=>{
       this.id_persona=res
       this.dpersona(this.id_persona)
+      this.lcontactos()
     })
   }
 
@@ -51,5 +55,10 @@ export class MenuPage implements OnInit {
         this.servicio.mostrarToast(res.mensaje,3000)
       }
     })
+  }
+
+
+  nuevo(){
+    this.nvCtrl.navigateRoot(['contacto'])
   }
 }

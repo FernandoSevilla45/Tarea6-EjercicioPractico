@@ -4,19 +4,27 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-fab  slot="fixed" horizontal="end" vertical="top">
+  <ion-fab-button (click)="nuevo()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
 <ion-content [fullscreen]="true">
-  <ion-label>{{nombre}}</ion-label>
+  <ion-item>
+    <ion-label class="titulo">Bienvenido: {{nombre}}</ion-label>
+  </ion-item>
 
   <ion-list>
-  <ion-item-sliding>
+  <ion-item-sliding *ngFor="let fila of contactos">
     <ion-item>
       <ion-avatar>
         <img src="assets/imgs/persona.png"/>
       </ion-avatar>
       <ion-label>
-        <b>Nombre:</b>
+        <b>Nombre:</b> {{fila.nombre}} {{fila.apellido}}
         <br/>
-        <b>Telf:</b>
+        <b>Telf:</b> {{fila.telefono}}
       </ion-label>
     </ion-item>
 
