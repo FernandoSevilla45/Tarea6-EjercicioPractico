@@ -19,8 +19,7 @@ enviarDatos(cuerpo:any, tabla:string){
   }else{
     this.server=this.contacto
   }
-this.mostrarToast(this.server,3000)
-  let head = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    let head = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
   let opciones={
     headers:head
   }

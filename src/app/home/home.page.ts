@@ -22,7 +22,6 @@ txt_cla: string=""
     }
     this.servicio.enviarDatos(datos,"persona").subscribe((res:any)=>{
       if(res.estado){
-        this.servicio.mostrarToast(res.codigo,3000)
         this.servicio.crearSession('idpersona',res.codigo)
         this.navCtrl.navigateRoot(['/menu'])
       }

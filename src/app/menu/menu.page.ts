@@ -57,8 +57,18 @@ constructor(public servicio: Acceso, public nvCtrl:NavController) {
     })
   }
 
-
   nuevo(){
     this.nvCtrl.navigateRoot(['contacto'])
+  }
+
+  editar(cod_contacto:string){
+    this.servicio.mostrarToast(cod_contacto,3000)
+    this.servicio.crearSession('idcontacto',cod_contacto)
+    this.nvCtrl.navigateRoot(['acontacto'])
+  }
+
+  eliminar(cod_contacto:string){
+    this.servicio.crearSession('idcontacto',cod_contacto)
+    this.nvCtrl.navigateRoot(['econtacto'])
   }
 }
