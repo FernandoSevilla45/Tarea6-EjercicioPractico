@@ -16,5 +16,6 @@ import { CuentaPage } from './cuenta.page';
     CuentaPageRoutingModule
   ],
   declarations: [CuentaPage]
+  
 })
 export class CuentaPageModule {}

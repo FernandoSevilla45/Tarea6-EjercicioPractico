@@ -32,10 +32,11 @@ txt_cla: string=""
   }
 
   recuperar(){
-
+    this.navCtrl.navigateForward(['/recuperar']);
   }
 
   crear(){
-
+    this.navCtrl.navigateForward(['/cuenta']);
   }
+  
 }
