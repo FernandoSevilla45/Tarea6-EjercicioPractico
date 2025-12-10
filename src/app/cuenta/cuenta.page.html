@@ -9,43 +9,39 @@
 
     <ion-item>
       <ion-label position="floating">CI</ion-label>
-      <ion-input type="text" [(ngModel)]="ci"></ion-input>
+      <ion-input type="text" [(ngModel)]="txt_cedula"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="nombre"></ion-input>
+      <ion-input type="text" [(ngModel)]="txt_nombre"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" [(ngModel)]="apellido"></ion-input>
+      <ion-input type="text" [(ngModel)]="txt_apellido"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Correo</ion-label>
-      <ion-input type="email" [(ngModel)]="correo"></ion-input>
+      <ion-input type="email" [(ngModel)]="txt_correo" (focusout)="vcedula()"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Clave</ion-label>
-      <ion-input type="password" [(ngModel)]="clave"></ion-input>
+      <ion-input type="password" [(ngModel)]="txt_clave" (focusout)="vclave()"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Pregunta de Seguridad</ion-label>
-      <ion-input [(ngModel)]="pregunta"></ion-input>
+      <ion-input label="Verificar clave" type="password" [(ngModel)]="txt_clave2" (focusout)="vclave()"></ion-input>
+      <ion-label color="danger">{{mensaje}}</ion-label>
     </ion-item>
+
     
     <ion-item>
-      <ion-label position="floating">Respuesta</ion-label>
-      <ion-input [(ngModel)]="respuesta"></ion-input>
+      <ion-button expand="block" color="primary" (click)="guardar()">Crear Cuenta</ion-button> 
+      <ion-button expand="block" color="primary" (click)="cancelar()">Cancelar</ion-button>
     </ion-item>
     
-
-    <ion-button expand="block" color="primary" (click)="crearCuenta()">
-      Crear Cuenta
-    </ion-button>
-
   </ion-list>
 </ion-content>

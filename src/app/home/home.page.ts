@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Acceso } from '../servicio/acceso';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
+import { CuentaPage } from '../cuenta/cuenta.page';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,11 @@ export class HomePage {
 txt_usu: string=""
 txt_cla: string=""
 
-  constructor(public servicio:Acceso, public navCtrl: NavController) {}
+  constructor(
+    public servicio:Acceso, 
+    public navCtrl: NavController,
+    public modalCtrl: ModalController
+    ) {}
 
   login(){
     let datos={
@@ -35,8 +40,11 @@ txt_cla: string=""
     this.navCtrl.navigateForward(['/recuperar']);
   }
 
-  crear(){
-    this.navCtrl.navigateForward(['/cuenta']);
+  async crear(){
+    const modal = await this.modalCtrl.create({
+     component:CuentaPage 
+    })
+    return await modal.present()
   }
   
 }

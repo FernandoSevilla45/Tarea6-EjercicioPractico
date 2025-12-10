@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Acceso } from '../servicio/acceso';
 
 @Component({
@@ -10,44 +10,45 @@ import { Acceso } from '../servicio/acceso';
 })
 export class CuentaPage {
 
-  ci: string = "";
-  nombre: string = "";
-  apellido: string = "";
-  correo: string = "";
-  clave: string = "";
+  txt_cedula: string = "";
+  txt_nombre: string = "";
+  txt_apellido: string = "";
+  txt_correo: string = "";
+  txt_clave: string = "";
+  txt_clave2: string = "";
+  mensaje: string = "";
   pregunta: string = "";
-respuesta: string = "";
+  respuesta: string = "";
 
 
-  constructor(public servicio: Acceso, public navCtrl: NavController) {}
+  constructor(public servicio: Acceso, public modalCtrl: ModalController) {}
 
-  crearCuenta() {
+  ngOnInit(){}
 
-    if(this.ci=="" || this.nombre=="" || this.apellido=="" || this.correo=="" || this.clave==""){
-      this.servicio.mostrarToast("Complete todos los campos", 2000);
-      return;
+  vclave(){
+    if(this.txt_clave==this.txt_clave2){
+      this.mensaje=""
+    }else{
+      this.mensaje="La clave no coincide"      
     }
-
-    let datos = {
-      accion: "insertar",
-      ci: this.ci,
-      nombre: this.nombre,
-      apellido: this.apellido,
-      correo: this.correo,
-      clave: this.clave,
-      pregunta: this.pregunta,
-      respuesta: this.respuesta
-    };
-    
-
-    this.servicio.enviarDatos(datos, "persona").subscribe((res:any)=>{
-      if(res.estado){
-        this.servicio.mostrarToast(res.mensaje, 2000);
-        this.navCtrl.back();  // vuelve al login
-      } else {
-        this.servicio.mostrarToast(res.mensaje, 3000);
-      }
-    });
   }
 
+  vcedula(){
+    let datos={
+      accion:'vcedula',
+      cedula:this.txt_cedula,
+    }
+    this.servicio.enviarDatos(datos,'persona').subscribe((res:any)=>{
+      if(res.estado){
+        this.txt_cedula=""
+        this.servicio.mostrarToast(res.mensaje,3000)
+      }
+    })
+  }
+  
+  guardar(){}
+
+  cancelar(){
+    this.modalCtrl.dismiss()
+  }
 }
