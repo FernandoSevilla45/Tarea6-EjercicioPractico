@@ -9,7 +9,7 @@
 
     <ion-item>
       <ion-label position="floating">CI</ion-label>
-      <ion-input type="text" [(ngModel)]="txt_cedula"></ion-input>
+      <ion-input type="text" [(ngModel)]="txt_cedula" (focusout)="vcedula()"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -24,7 +24,7 @@
 
     <ion-item>
       <ion-label position="floating">Correo</ion-label>
-      <ion-input type="email" [(ngModel)]="txt_correo" (focusout)="vcedula()"></ion-input>
+      <ion-input type="email" [(ngModel)]="txt_correo" (focusout)="vclave()"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -39,7 +39,7 @@
 
     
     <ion-item>
-      <ion-button expand="block" color="primary" (click)="guardar()">Crear Cuenta</ion-button> 
+      <ion-button expand="block" color="primary" (click)="guardar()" [disabled]="bloqueado">Guardar</ion-button> 
       <ion-button expand="block" color="primary" (click)="cancelar()">Cancelar</ion-button>
     </ion-item>
     

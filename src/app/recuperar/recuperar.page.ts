@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Acceso } from '../servicio/acceso';
+import { Block } from '@angular/compiler';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-recuperar',
@@ -7,67 +9,52 @@ import { Acceso } from '../servicio/acceso';
   styleUrls: ['./recuperar.page.scss'],
   standalone:false,
 })
-export class RecuperarPage {
+export class RecuperarPage implements OnInit {
 
-  paso = 1;
+  txt_cedula:string=""
+  txt_correo:string=""
+  txt_clave:string=""
+  txt_clave2:string=""
 
-  ci = "";
-  pregunta = "";
-  respuesta = "";
-  clave = "";
-  codigo = "";  // ID persona
-
-  constructor(public servicio: Acceso) {}
-
-  buscarPregunta() {
-    let datos = {
-      accion: "buscarPregunta",
-      ci: this.ci
-    };
-
-    this.servicio.enviarDatos(datos, "persona").subscribe((res:any) => {
-      if(res.estado){
-        this.pregunta = res.pregunta;
-        this.paso = 2;
-      } else {
-        this.servicio.mostrarToast(res.mensaje, 3000);
-      }
-    });
+  constructor(public servicio:Acceso, public modalCtrl: ModalController){}
+  mensaje: string = ""
+  bloqueado=false 
+  ngOnInit(){
+    
   }
 
-  validarRespuesta() {
-    let datos = {
-      accion: "validarRespuesta",
-      ci: this.ci,
-      respuesta: this.respuesta
-    };
-
-    this.servicio.enviarDatos(datos, "persona").subscribe((res:any) => {
-      if(res.estado){
-        this.codigo = res.codigo;
-        this.paso = 3;
-      } else {
-        this.servicio.mostrarToast(res.mensaje, 3000);
-      }
-    });
+  vclave(){
+    if(this.txt_clave==this.txt_clave2){
+      this.mensaje=""
+      this.bloqueado=false
+    }else{
+      this.mensaje="La clave no coincide"      
+      this.bloqueado=true
+    }
   }
+ 
+  cclave(){
+    if(this.mensaje!=""){
+      this.servicio.mostrarToast("Claves no coinciden",3000)
+      this.bloqueado=true
+    }else if(this.txt_cedula==""||this.txt_correo==""||this.txt_clave==""){
+      this.servicio.mostrarToast("Faltan datos",3000)
+      this.bloqueado=true
+    }else{
+      this.bloqueado=false
+      let datos={
+        accion:"cclave",
+        cedula:this.txt_cedula,
+        correo:this.txt_correo,
+        clave:this.txt_clave,
 
-  actualizarClave() {
-    let datos = {
-      accion: "actualizarClave",
-      codigo: this.codigo,
-      clave: this.clave
-    };
-
-    this.servicio.enviarDatos(datos, "persona").subscribe((res:any) => {
-      this.servicio.mostrarToast(res.mensaje, 3000);
-      if(res.estado){
-        this.paso = 1; // Reiniciar
-        this.ci = "";
-        this.respuesta = "";
-        this.clave = "";
       }
-    });
+      this.servicio.enviarDatos(datos,"persona").subscribe((res:any)=>{
+        this.servicio.mostrarToast(res.mensaje,3000)
+        if(res.estado){
+          this.modalCtrl.dismiss()
+        }
+      })
+    }
   }
-
 }

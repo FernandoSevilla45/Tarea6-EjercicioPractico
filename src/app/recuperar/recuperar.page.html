@@ -4,40 +4,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-card color="danger">
+    <ion-card-header>
+      <ion-card-title>Preguntas de Verificacion</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-badge color="warning">Responda las siguientes preguntas de forma correcta</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-input label="cedula" [(ngModel)]="txt_cedula"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="correo" [(ngModel)]="txt_correo"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-  <!-- Paso 1: Ingresar CI -->
-  <div *ngIf="paso == 1">
-    <ion-item>
-      <ion-label position="floating">Cédula</ion-label>
-      <ion-input [(ngModel)]="ci"></ion-input>
-    </ion-item>
 
-    <ion-button expand="block" (click)="buscarPregunta()">Continuar</ion-button>
-  </div>
 
-  <!-- Paso 2: Mostrar pregunta -->
-  <div *ngIf="paso == 2">
-    <ion-item>
-      <ion-label>{{ pregunta }}</ion-label>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Respuesta</ion-label>
-      <ion-input [(ngModel)]="respuesta"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" (click)="validarRespuesta()">Validar</ion-button>
-  </div>
-
-  <!-- Paso 3: Nueva clave -->
-  <div *ngIf="paso == 3">
-    <ion-item>
-      <ion-label position="floating">Nueva Clave</ion-label>
-      <ion-input type="password" [(ngModel)]="clave"></ion-input>
-    </ion-item>
-
-    <ion-button expand="block" color="success" (click)="actualizarClave()">Actualizar Clave</ion-button>
-  </div>
-
+  <ion-card color="success">
+    <ion-card-header>
+      <ion-card-title>Nueva clave</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="clave" type="password" [(ngModel)]="txt_clave" (focusout)="vclave()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Confirmar clave" type="password" [(ngModel)]="txt_clave2" (focusout)="vclave()"></ion-input>
+        <label color="danger">{{mensaje}}</label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+<ion-item>
+  <ion-button (click)="cclave()" [disabled]="bloqueado">Guardar</ion-button>
+</ion-item>
 </ion-content>
