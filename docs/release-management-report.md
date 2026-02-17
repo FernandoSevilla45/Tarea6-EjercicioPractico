@@ -16,3 +16,4 @@ Issue → Branch → Commit → PR → Merge → Tag
 Historial validado mediante:
 git log --oneline
 git tag
+.
