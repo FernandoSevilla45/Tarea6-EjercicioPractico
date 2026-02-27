@@ -16,3 +16,5 @@
 | EC-06 | config/.env.example        | Config   | commit SHA  | Integrado | DevOps   | commit |
 | EC-07 | .github/pull_request_template.md      | Process | commit SHA | Aprobado | Líder | commit |
 | EC-08 | README.md                  | Doc      | v1.0.0      | Baselined | Equipo  | tag + release |
+
+yoyoyoyooy
