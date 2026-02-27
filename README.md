@@ -8,3 +8,4 @@
 ## Convención
 - Commits: chore/docs/feat/fix + referencia ISSUE-xx
 - Versiones: SemVer (vMAJOR.MINOR.PATCH)"# Audit trail improvement" 
+yoyoyoyo
